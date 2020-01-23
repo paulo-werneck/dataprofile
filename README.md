@@ -10,30 +10,30 @@ Output: Profile gerado em PDF.
 
 * class CreateProfile
 
-** def read_file()
+    def read_file()
 
-def mount_tables()
+    def mount_tables()
 
-def header()
+    def header()
 
-def footer()
+    def footer()
 
-def subtitle()
+    def subtitle()
 
-def body()
+    def body()
 
-def viewer()
+    def viewer()
 
 * class Summary - (pai)
 
-def columns_type()
+    def columns_type()
 
-def volume_base()
+    def volume_base()
   
 * class SummaryNumber - (filha)
 
-def get_statistics()
+    def get_statistics()
   
 * class SummaryString - (filha)
 
-def get_statistics()
+    def get_statistics()
