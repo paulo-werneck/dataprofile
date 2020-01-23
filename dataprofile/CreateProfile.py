@@ -22,9 +22,9 @@ class CreateProfile(FPDF):
         self.base = str(path).split('.')[-2].split('/')[-1]
         self.type_file = str(path).split('.')[-1].rstrip(" ")
         self.summary = Summary(self.read_file())
-        self.summary_number = SummaryNumber(self.read_file())
-        self.summary_string = SummaryString(self.read_file())
-        self.viewer()
+        #self.summary_number = SummaryNumber(self.read_file())
+        #self.summary_string = SummaryString(self.read_file())
+        #self.viewer()
 
     def read_file(self):
         if self.type_file == 'csv':
@@ -118,4 +118,7 @@ class CreateProfile(FPDF):
 
 
 if __name__ == "__main__":
+
     pdf = CreateProfile(client=' XPTO INDÚSTRIA DE ALIMENTOS SA')
+
+    print(pdf.summary.get_statistics())
