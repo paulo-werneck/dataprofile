@@ -26,16 +26,16 @@ Output: Profile gerado em PDF.
 
         def viewer()
 
-* class Summary - (pai)
+* class Summary (pai)
 
         def columns_type()
 
         def volume_base()
   
-* class SummaryNumber - (filha)
+* class SummaryNumber (filha)
 
         def get_statistics()
   
-* class SummaryString - (filha)
+* class SummaryString (filha)
 
         def get_statistics()
