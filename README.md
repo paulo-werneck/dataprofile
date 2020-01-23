@@ -9,12 +9,19 @@ Output: Profile gerado em PDF.
 #### Classes e Funções:
 
 class CreateProfile
+
 def read_file
+
 def mount_tables
+
 def header
+
 def footer
+
 def subtitle
+
 def body
+
 def viewer
 
 class Summary - (pai)
