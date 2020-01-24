@@ -3,9 +3,6 @@ from dataprofile.SparkConfigs import spark_session
 
 class Summary:
 
-    TYPE_NUMBER = ('int', 'bigint', 'float', 'decimal', 'double', 'number')
-    TYPE_STRING = ('string', 'varchar')
-
     def __init__(self, data_frame):
         self.data_frame = data_frame
 
@@ -19,6 +16,10 @@ class Summary:
         data = self.data_frame.dtypes
         return spark_session.createDataFrame(data, index)
 
-    def get_statistics(self):
+    def get_statistics(self, tuple_type):
         dtypes = self.data_frame.dtypes
-        return [n for n in dtypes if Summary.TYPE_NUMBER in ]
+        columns = [n for n, k in dtypes if k in tuple_type]
+        if 'string' in tuple_type:
+            return self.data_frame.select(columns).summary("count", "min", "max").toPandas().transpose()
+        else:
+            return self.data_frame.select(columns).summary().toPandas().transpose()

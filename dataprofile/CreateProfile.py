@@ -1,12 +1,15 @@
 from dataprofile.SparkConfigs import spark_session
-from dataprofile.SummaryNumber import SummaryNumber
-from dataprofile.SummaryString import SummaryString
+#from dataprofile.SummaryNumber import SummaryNumber
+#from dataprofile.SummaryString import SummaryString
 from dataprofile.Summary import Summary
 from prettytable import PrettyTable, FRAME
 from fpdf import FPDF
 
 
 class CreateProfile(FPDF):
+
+    TYPE_NUMBER = ('int', 'bigint', 'float', 'decimal', 'double', 'number')
+    TYPE_STRING = ('string', 'varchar')
 
     def __init__(self, client, path='../infopreco.csv', header1=True, delimiter=';', encoding=['UTF-8', 'ISO-8859-1'],
                  quote='"', escape='\\', infer_schema=True):
@@ -121,4 +124,4 @@ if __name__ == "__main__":
 
     pdf = CreateProfile(client=' XPTO INDÚSTRIA DE ALIMENTOS SA')
 
-    print(pdf.summary.get_statistics())
+    print(pdf.summary.get_statistics(CreateProfile.TYPE_STRING).head(10))
