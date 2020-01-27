@@ -24,7 +24,7 @@ class CreateProfile(FPDF):
         self.summary = Summary(self.read_file())
         self.summary_number = SummaryNumber(self.read_file())
         self.summary_string = SummaryString(self.read_file())
-        #self.viewer()
+        self.viewer()
 
     def read_file(self):
         if self.type_file == 'csv':
@@ -60,7 +60,7 @@ class CreateProfile(FPDF):
 
     def header(self):
         # load logo PoD
-        self.image(name='../images/logo_pod.png', w=30, h=20)
+        self.image(name='../images/SmallLogo.png', w=30, h=20)
         # set title configs
         self.set_font(family='Times', style='B', size=17)
         self.set_xy(x=90, y=20)
@@ -114,18 +114,9 @@ class CreateProfile(FPDF):
         self.add_page()
         self.subtitle()
         self.body()
-        self.output('../report/teste.pdf', 'F')
+        self.output(f'../report/POD-profile-{self.base}.pdf', 'F')
 
 
 if __name__ == "__main__":
 
     pdf = CreateProfile(client=' XPTO INDÚSTRIA DE ALIMENTOS SA')
-
-    import pandas as pd
-    pd.set_option('display.max_columns', None)
-    pd.set_option('display.max_rows', None)
-    from pyspark.sql.functions import countDistinct, col
-    a = ["CNPJ", "BAIRRO", "UF"]
-    #print( pdf.read_file().select(countDistinct(a[0])).show() )
-
-    print(pdf.summary_number.get_missing().show())
