@@ -1,15 +1,12 @@
 from dataprofile.SparkConfigs import spark_session
-#from dataprofile.SummaryNumber import SummaryNumber
-#from dataprofile.SummaryString import SummaryString
+from dataprofile.SummaryNumber import SummaryNumber
+from dataprofile.SummaryString import SummaryString
 from dataprofile.Summary import Summary
 from prettytable import PrettyTable, FRAME
 from fpdf import FPDF
 
 
 class CreateProfile(FPDF):
-
-    TYPE_NUMBER = ('int', 'bigint', 'float', 'decimal', 'double', 'number')
-    TYPE_STRING = ('string', 'varchar')
 
     def __init__(self, client, path='../infopreco.csv', header1=True, delimiter=';', encoding=['UTF-8', 'ISO-8859-1'],
                  quote='"', escape='\\', infer_schema=True):
@@ -25,8 +22,8 @@ class CreateProfile(FPDF):
         self.base = str(path).split('.')[-2].split('/')[-1]
         self.type_file = str(path).split('.')[-1].rstrip(" ")
         self.summary = Summary(self.read_file())
-        #self.summary_number = SummaryNumber(self.read_file())
-        #self.summary_string = SummaryString(self.read_file())
+        self.summary_number = SummaryNumber(self.read_file())
+        self.summary_string = SummaryString(self.read_file())
         #self.viewer()
 
     def read_file(self):
@@ -124,4 +121,11 @@ if __name__ == "__main__":
 
     pdf = CreateProfile(client=' XPTO INDÚSTRIA DE ALIMENTOS SA')
 
-    print(pdf.summary.get_statistics(CreateProfile.TYPE_STRING).head(10))
+    import pandas as pd
+    pd.set_option('display.max_columns', None)
+    pd.set_option('display.max_rows', None)
+    from pyspark.sql.functions import countDistinct, col
+    a = ["CNPJ", "BAIRRO", "UF"]
+    #print( pdf.read_file().select(countDistinct(a[0])).show() )
+
+    print(pdf.summary_number.get_missing().show())

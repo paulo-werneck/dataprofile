@@ -16,10 +16,10 @@ class Summary:
         data = self.data_frame.dtypes
         return spark_session.createDataFrame(data, index)
 
-    def get_statistics(self, tuple_type):
-        dtypes = self.data_frame.dtypes
-        columns = [n for n, k in dtypes if k in tuple_type]
-        if 'string' in tuple_type:
-            return self.data_frame.select(columns).summary("count", "min", "max").toPandas().transpose()
-        else:
-            return self.data_frame.select(columns).summary().toPandas().transpose()
+    def get_variables_segregated(self):
+        type_number = ('int', 'bigint', 'float', 'decimal', 'double', 'number')
+        type_string = ('string', 'varchar')
+        list_number = [n for n, k in self.data_frame.dtypes if k in type_number]
+        list_string = [n for n, k in self.data_frame.dtypes if k in type_string]
+        return list_number, list_string
+
