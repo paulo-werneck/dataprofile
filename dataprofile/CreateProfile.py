@@ -79,35 +79,35 @@ class CreateProfile(FPDF):
 
     def body(self):
         self.set_left_margin(margin=10)
-        self.set_font(family='Courier', style='', size=10)
+        self.set_font(family='Courier', style='', size=9)
         self.cell(w=0, h=6, txt=f'Dataset: {self.base}', border=0, ln=1)
 
         # Volume
-        self.set_font(family='Courier', style='B', size=10)
+        self.set_font(family='Courier', style='B', size=9)
         self.cell(w=0, h=10, txt=f'1. Volumetria', border=0, ln=1)
 
-        self.set_font(family='Courier', style='', size=9)
+        self.set_font(family='Courier', style='', size=8)
         self.multi_cell(w=0, h=5, align='L', txt=str(self.mount_tables(self.summary.volume_base())), border=0)
 
         # Data types
-        self.set_font(family='Courier', style='B', size=10)
+        self.set_font(family='Courier', style='B', size=9)
         self.cell(w=0, h=10, txt=f'2. Campos e tipos de dados', border=0, ln=1)
 
-        self.set_font(family='Courier', style='', size=9)
+        self.set_font(family='Courier', style='', size=8)
         self.multi_cell(w=0, h=5, align='L', txt=str(self.mount_tables(self.summary.columns_types())), border=0)
 
         # String Variables
-        self.set_font(family='Courier', style='B', size=10)
+        self.set_font(family='Courier', style='B', size=9)
         self.cell(w=0, h=10, txt=f'3. Variáveis quantitativas', border=0, ln=1)
 
-        self.set_font(family='Courier', style='', size=9)
+        self.set_font(family='Courier', style='', size=8)
         self.multi_cell(w=0, h=5, align='L', txt=str(self.mount_tables(self.summary_number.get_statistics())), border=0)
 
         # Number Variables
-        self.set_font(family='Courier', style='B', size=10)
+        self.set_font(family='Courier', style='B', size=9)
         self.cell(w=0, h=10, txt=f'4. Variáveis qualitativas', border=0, ln=1)
 
-        self.set_font(family='Courier', style='', size=9)
+        self.set_font(family='Courier', style='', size=8)
         self.multi_cell(w=0, h=5, align='L', txt=str(self.mount_tables(self.summary_string.get_statistics())), border=0)
 
     def viewer(self):
