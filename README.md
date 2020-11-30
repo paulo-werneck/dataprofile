@@ -1,7 +1,7 @@
-# pod-dataprofile
-repositório do projeto de data profile - pod
+# dataprofile
+repositório do projeto de data profile
 
-Este repositório tem como finalidade compartilhar o projeto de dataprofile para datasets.
+Este repositório tem como finalidade compartilhar o projeto de dataprofile em spark.
 
 Input: Datasets csv, parquet, txt ou hive (a implementar)
 
